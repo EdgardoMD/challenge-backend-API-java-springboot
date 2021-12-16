@@ -27,7 +27,7 @@ public class PersonajeController {
 	
 	@GetMapping
 	public ResponseEntity<?> listarPersonajes(){
-		return ResponseEntity.ok(service.listar());
+		return ResponseEntity.ok(service.listarPersonajesShort());
 	}
 	
 	@PostMapping

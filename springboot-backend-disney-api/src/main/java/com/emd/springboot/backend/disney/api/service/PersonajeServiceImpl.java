@@ -1,11 +1,13 @@
 package com.emd.springboot.backend.disney.api.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.emd.springboot.backend.disney.api.dto.PersonajeDTO;
 import com.emd.springboot.backend.disney.api.model.entity.Personaje;
 import com.emd.springboot.backend.disney.api.model.repository.IPersonajeRepository;
 
@@ -53,6 +55,19 @@ public class PersonajeServiceImpl implements IPersonajeService{
 	@Override
 	public List<Personaje> buscarPersonajesPorEdad(int edad) {
 		return repository.findByEdad(edad);
+	}
+
+	@Override
+	public List<PersonajeDTO> listarPersonajesShort() {
+		List<PersonajeDTO> personajeDTOList = new ArrayList<>();
+        repository.findAll()
+                .forEach(p -> {
+                    PersonajeDTO personajeDTO = new PersonajeDTO();
+                    personajeDTO.setImagen(p.getImagen());
+                    personajeDTO.setNombre(p.getNombre());
+                    personajeDTOList.add(personajeDTO);
+                });
+        return personajeDTOList;
 	}
 
 	
