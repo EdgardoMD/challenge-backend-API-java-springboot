@@ -1,11 +1,13 @@
 package com.emd.springboot.backend.disney.api.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.emd.springboot.backend.disney.api.dto.PeliculaSerieDTO;
 import com.emd.springboot.backend.disney.api.model.entity.PeliculaSerie;
 import com.emd.springboot.backend.disney.api.model.repository.IPeliculaSerieRepository;
 
@@ -39,6 +41,21 @@ public class PeliculaSerieServiceImpl implements IPeliculaSerieService{
 	public boolean eliminar(Integer id) {
 		repository.deleteById(id);
 		return true;
+	}
+
+	@Override
+	public List<PeliculaSerieDTO> listarPeliculasSeriesDto() {
+		List<PeliculaSerieDTO> listaDto = new ArrayList<>();
+		repository.findAll()
+		.forEach(p -> {
+			PeliculaSerieDTO peliculaSerieDto = new PeliculaSerieDTO();
+			peliculaSerieDto.setImagen(p.getImagen());
+			peliculaSerieDto.setTitulo(p.getTitulo());
+			peliculaSerieDto.setFechaCreacion(p.getFechaCreacion().toString());
+			listaDto.add(peliculaSerieDto);
+			
+		});
+		return listaDto;
 	}
 
 }

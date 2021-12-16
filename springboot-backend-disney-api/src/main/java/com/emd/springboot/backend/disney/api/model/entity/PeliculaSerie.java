@@ -36,7 +36,7 @@ public class PeliculaSerie {
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] imagen;
 	
-	private String nombre;
+	private String titulo;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaCreacion;
