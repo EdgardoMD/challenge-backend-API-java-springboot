@@ -45,4 +45,16 @@ public class PersonajeServiceImpl implements IPersonajeService{
 		return true;
 	}
 
+	@Override
+	public Personaje buscarPersonajePorNombre(String nombre) {
+		return repository.buscarPersonajePorNombre(nombre);
+	}
+
+	@Override
+	public List<Personaje> buscarPersonajesPorEdad(int edad) {
+		return repository.findByEdad(edad);
+	}
+
+	
+
 }

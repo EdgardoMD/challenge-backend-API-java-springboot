@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.emd.springboot.backend.disney.api.model.entity.Personaje;
@@ -61,6 +62,16 @@ public class PersonajeController {
 	public ResponseEntity<?> eliminarPersonaje(@PathVariable Integer id){
 		service.eliminar(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/name")
+	public ResponseEntity<?> buscarPersonajePorNombre(@RequestParam("name") String name){
+		return ResponseEntity.ok(service.buscarPersonajePorNombre(name));
+	}
+	
+	@GetMapping("/age")
+	public ResponseEntity<?> buscarPersonajePorEdad(@RequestParam("age") int age){
+		return ResponseEntity.ok(service.buscarPersonajesPorEdad(age));
 	}
 
 }
