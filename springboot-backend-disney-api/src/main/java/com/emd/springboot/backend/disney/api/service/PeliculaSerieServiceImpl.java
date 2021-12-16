@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.emd.springboot.backend.disney.api.model.entity.PeliculaSerie;
 import com.emd.springboot.backend.disney.api.model.repository.IPeliculaSerieRepository;
 
+@Service
 public class PeliculaSerieServiceImpl implements IPeliculaSerieService{
 	
 	@Autowired

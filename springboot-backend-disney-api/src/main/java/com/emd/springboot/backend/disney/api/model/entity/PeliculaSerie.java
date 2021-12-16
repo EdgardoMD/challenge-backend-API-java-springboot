@@ -43,6 +43,10 @@ public class PeliculaSerie {
 	
 	private int calificacion;
 	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "peliculas_series_personajes",
+			joinColumns = @JoinColumn(name = "FK_PELICULAS_SERIES", nullable = false),
+			inverseJoinColumns = @JoinColumn(name = "FK_PERSONAJES", nullable = false))
 	@JsonBackReference
 	private List<Personaje> personajesAsociados;
 	

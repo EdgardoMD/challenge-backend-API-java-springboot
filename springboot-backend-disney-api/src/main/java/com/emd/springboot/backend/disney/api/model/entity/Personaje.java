@@ -40,7 +40,7 @@ public class Personaje {
 	@Basic(fetch = FetchType.LAZY)
 	private String historia;
 	
-	@ManyToMany(mappedBy = "personajes")
+	@ManyToMany(mappedBy = "personajesAsociados")
 	@JsonIgnore
 	@JsonManagedReference
 	private List<PeliculaSerie> peliculasSeries;

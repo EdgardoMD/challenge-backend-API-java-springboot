@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.emd.springboot.backend.disney.api.model.entity.Personaje;
 import com.emd.springboot.backend.disney.api.model.repository.IPersonajeRepository;
 
+@Service
 public class PersonajeServiceImpl implements IPersonajeService{
 	
 	@Autowired
