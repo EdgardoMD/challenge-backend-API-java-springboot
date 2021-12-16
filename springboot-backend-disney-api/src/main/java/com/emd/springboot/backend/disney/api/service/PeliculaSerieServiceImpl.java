@@ -51,7 +51,7 @@ public class PeliculaSerieServiceImpl implements IPeliculaSerieService{
 			PeliculaSerieDTO peliculaSerieDto = new PeliculaSerieDTO();
 			peliculaSerieDto.setImagen(p.getImagen());
 			peliculaSerieDto.setTitulo(p.getTitulo());
-			peliculaSerieDto.setFechaCreacion(p.getFechaCreacion().toString());
+			peliculaSerieDto.setFecchaCreacion(p.getFechaCreacion());
 			listaDto.add(peliculaSerieDto);
 			
 		});
