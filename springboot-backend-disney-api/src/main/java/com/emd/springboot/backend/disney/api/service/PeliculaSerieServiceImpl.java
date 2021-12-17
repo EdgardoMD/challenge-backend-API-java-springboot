@@ -58,4 +58,9 @@ public class PeliculaSerieServiceImpl implements IPeliculaSerieService{
 		return listaDto;
 	}
 
+	@Override
+	public PeliculaSerie obtenerPeliculaSeriePorTitulo(String titulo) {
+		return repository.obtenerPeliculaSeriePorTitulo(titulo);
+	}
+
 }
