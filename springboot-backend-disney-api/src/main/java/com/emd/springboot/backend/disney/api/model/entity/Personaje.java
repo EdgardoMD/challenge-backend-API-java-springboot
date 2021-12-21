@@ -41,7 +41,6 @@ public class Personaje {
 	private String historia;
 	
 	@ManyToMany(mappedBy = "personajesAsociados")
-	@JsonIgnore
 	@JsonManagedReference
 	private List<PeliculaSerie> peliculasSeries;
 
