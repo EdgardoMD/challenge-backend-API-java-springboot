@@ -31,6 +31,8 @@ import com.emd.springboot.backend.disney.api.payload.response.JwtResponse;
 import com.emd.springboot.backend.disney.api.payload.response.MessageResponse;
 import com.emd.springboot.backend.disney.api.security.jwt.JwtUtils;
 import com.emd.springboot.backend.disney.api.security.services.UsuarioImpl;
+import com.emd.springboot.backend.disney.api.sendgrid.EmailRequest;
+import com.emd.springboot.backend.disney.api.sendgrid.EmailSenderService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -51,6 +53,9 @@ public class AuthController {
 
 	@Autowired
 	private JwtUtils jwtUtils;
+	
+	@Autowired
+	private EmailSenderService emailSenderService;
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -129,6 +134,13 @@ public class AuthController {
 
 	    user.setRoles(roles);
 	    userRepository.save(user);
+	    
+	    EmailRequest request = new EmailRequest(user.getEmail(), 
+	    		"Bienvenido a nuestra App", 
+	    		user.getNombreUsuario().toString() + "Le damos la bienvenida y agradecemos su participacion");
+	    
+	    emailSenderService.sendEmail(request);
+	    
 
 	    return ResponseEntity.ok(new MessageResponse("El usuario se ha registrado exitosmente!"));
 	  }
