@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,10 +30,17 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotBlank
+	@Size(max = 20)
 	private String nombreUsuario;
 	
+	@NotBlank
+	@Size(max = 50)
 	private String password;
 	
+	@NotBlank
+	  @Size(max = 50)
+	  @Email
 	private String email;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -38,10 +48,12 @@ public class Usuario {
 				inverseJoinColumns = @JoinColumn(name = "rol_id"))
 	private Set<Rol> roles  = new HashSet<>();
 
-	public Usuario(String nombreUsuario, String password, Set<Rol> roles) {
+	public Usuario(String nombreUsuario, String password, String email) {
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
-		this.roles = roles;
+		this.email = email;
 	}
+
+	
 
 }
