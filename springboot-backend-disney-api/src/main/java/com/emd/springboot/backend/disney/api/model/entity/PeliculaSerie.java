@@ -18,6 +18,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -36,6 +38,8 @@ public class PeliculaSerie {
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] imagen;
 	
+	@NotBlank
+	@Size(min = 2)
 	private String titulo;
 	
 	@Temporal(TemporalType.TIMESTAMP)

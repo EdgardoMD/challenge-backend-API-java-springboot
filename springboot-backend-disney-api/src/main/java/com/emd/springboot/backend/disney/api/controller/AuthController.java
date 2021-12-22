@@ -38,19 +38,19 @@ import com.emd.springboot.backend.disney.api.security.services.UsuarioImpl;
 public class AuthController {
 	
 	@Autowired
-	AuthenticationManager authenticationManager;
+	private AuthenticationManager authenticationManager;
 
 	@Autowired
-	IUsuarioRepository userRepository;
+	private IUsuarioRepository userRepository;
 
 	@Autowired
-	IRolRepository roleRepository;
+	private IRolRepository roleRepository;
 
 	@Autowired
-	BCryptPasswordEncoder encoder;
+	private BCryptPasswordEncoder encoder;
 
 	@Autowired
-	JwtUtils jwtUtils;
+	private JwtUtils jwtUtils;
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {

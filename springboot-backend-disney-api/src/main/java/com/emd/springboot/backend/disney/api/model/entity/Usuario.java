@@ -23,37 +23,37 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "usuarios")
-@NoArgsConstructor @Getter @Setter @ToString
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Usuario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@NotBlank
-	@Size(max = 20)
+	@Size(min = 3, max = 20)
 	private String nombreUsuario;
-	
+
+	@NotBlank
+	@Size(min = 4, max = 50)
+	private String password;
+
 	@NotBlank
 	@Size(max = 50)
-	private String password;
-	
-	@NotBlank
-	  @Size(max = 50)
-	  @Email
+	@Email
 	private String email;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "usuario_id"),
-				inverseJoinColumns = @JoinColumn(name = "rol_id"))
-	private Set<Rol> roles  = new HashSet<>();
+	@JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
+	private Set<Rol> roles = new HashSet<>();
 
 	public Usuario(String nombreUsuario, String password, String email) {
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
 		this.email = email;
 	}
-
-	
 
 }
