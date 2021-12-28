@@ -1,6 +1,9 @@
 package com.emd.springboot.backend.disney.api.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -67,6 +70,20 @@ public class PeliculaSerieController {
 	@GetMapping("/name")
 	public ResponseEntity<?> buscarPeliculaSeriePorNombre(@RequestParam("name") String titulo){
 		return ResponseEntity.ok(service.obtenerPeliculaSeriePorTitulo(titulo));
+	}
+	
+	@GetMapping("/gender")
+	public ResponseEntity<?> buscarPeliculasSeriesPorIdGenero(@RequestParam("gender") Integer generoId){
+		
+		List<Integer> listadoIds = service.obtenerPeliculasSeriesPorIdGenero(generoId);
+		List<PeliculaSerie> listadoPeliculasPorGenero = new ArrayList<>();
+		
+		for(int i=0; i<listadoIds.size(); i++) {
+			PeliculaSerie ps = service.obtenerPorId(listadoIds.get(i)).get();
+			listadoPeliculasPorGenero.add(ps);		
+		}			
+		
+		return ResponseEntity.ok(listadoPeliculasPorGenero);
 	}
 
 }

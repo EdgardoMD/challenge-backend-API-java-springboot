@@ -58,6 +58,7 @@ public class PeliculaSerie {
 	@JoinTable(name = "peliculas_series_generos",
 			joinColumns = @JoinColumn(name = "FK_PELICULAS_SERIES", nullable = false),
 			inverseJoinColumns = @JoinColumn(name = "FK_GENEROS", nullable = false))
+	@JsonBackReference
 	private List<Genero> generos;
 	
 	public PeliculaSerie() {

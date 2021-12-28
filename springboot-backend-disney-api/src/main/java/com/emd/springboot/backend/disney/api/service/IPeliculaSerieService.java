@@ -11,5 +11,7 @@ public interface IPeliculaSerieService extends ICRUD<PeliculaSerie> {
 	
 	List<PeliculaSerieDTO> listarPeliculasSeriesDto();
 	PeliculaSerie obtenerPeliculaSeriePorTitulo(@Param("titulo") String titulo);
+	
+	List<Integer> obtenerPeliculasSeriesPorIdGenero(@Param("generoId") Integer generoId);
 
 }

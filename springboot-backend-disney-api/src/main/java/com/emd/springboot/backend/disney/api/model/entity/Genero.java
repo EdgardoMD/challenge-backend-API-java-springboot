@@ -11,8 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -31,7 +33,8 @@ public class Genero {
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] imagen;
 	
-	@OneToMany(mappedBy = "generos", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@ManyToMany(mappedBy = "generos")
+	@JsonManagedReference
 	private List<PeliculaSerie> peliculasSeries;
 	
 	public Genero() {

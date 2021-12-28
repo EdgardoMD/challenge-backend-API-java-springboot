@@ -63,4 +63,10 @@ public class PeliculaSerieServiceImpl implements IPeliculaSerieService{
 		return repository.obtenerPeliculaSeriePorTitulo(titulo);
 	}
 
+	@Override
+	public List<Integer> obtenerPeliculasSeriesPorIdGenero(Integer generoId) {
+		
+		return repository.obtenerPeliculasSeriesPorIdGenero(generoId);
+	}
+
 }
