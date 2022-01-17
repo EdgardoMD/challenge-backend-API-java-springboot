@@ -22,6 +22,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -35,7 +36,8 @@ public class PeliculaSerie {
 	Integer id;
 	
 	@Lob
-	@Basic(fetch = FetchType.LAZY)
+	//@Basic(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private byte[] imagen;
 	
 	@NotBlank
@@ -64,6 +66,10 @@ public class PeliculaSerie {
 	public PeliculaSerie() {
 		this.personajesAsociados = new ArrayList<>();
 		this.generos = new ArrayList<>();
+	}
+	
+	public Integer getImagenHashCode() {
+		return (this.imagen != null) ? this.imagen.hashCode(): null;
 	}
 
 }
